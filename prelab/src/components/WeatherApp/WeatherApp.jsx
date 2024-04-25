@@ -1,5 +1,7 @@
 import React from "react";
 import './WeatherApp.css'
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
 import cloud_image from "../assets/cloud.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -33,6 +35,13 @@ function WeatherApp(){
         temperature[0].innerHTML=data.main.temp + "°c";
         location[0].innerHTML = data.name;
     }
+    const logout = async()=>{
+        try{
+            await signOut(auth)
+            } catch (err){
+                console.error(err);
+            }
+      };
 
 
     return(
@@ -67,6 +76,7 @@ function WeatherApp(){
                     <div className="text">Wind Speed</div>
                   </div>
                 </div>
+                <button onClick={logout}>logout</button>
             </div>
         </div>
     )
