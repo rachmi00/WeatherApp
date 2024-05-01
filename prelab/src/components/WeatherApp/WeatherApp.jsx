@@ -2,7 +2,7 @@ import React from "react";
 import './WeatherApp.css'
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
-
+import { useNavigate } from "react-router-dom";
 import cloud_image from "../assets/cloud.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
@@ -11,10 +11,11 @@ import {faTint} from '@fortawesome/free-solid-svg-icons'
 
 
 
+
 function WeatherApp(){
 
     let api_key ="227b1bbfa8adafd9c87f4ce405a3278b";
-
+    const navigate = useNavigate();
     const search= async()=>{
         const element = document.getElementsByClassName("cityInput")
         if (element[0].value === "")
@@ -38,6 +39,7 @@ function WeatherApp(){
     const logout = async()=>{
         try{
             await signOut(auth)
+            navigate("/")
             } catch (err){
                 console.error(err);
             }
@@ -76,8 +78,10 @@ function WeatherApp(){
                     <div className="text">Wind Speed</div>
                   </div>
                 </div>
-                <button onClick={logout}>logout</button>
+                
+              
             </div>
+            <button className="out" onClick={logout}>logout</button>
         </div>
     )
 }
