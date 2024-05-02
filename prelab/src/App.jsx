@@ -6,7 +6,7 @@ import LoginPage from './components/LoginPage/LoginPage'
 import SignUp from './components/SignUp/SignUp'
 import Navbar from './components/Blog/Navbar'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Bloggy from './components/Blog/Bloggy'
+
 import Blog from './components/Blog/Blog'
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
       <Route path='/' element={<Blog/>}></Route>
         <Route path='/login' element={<LoginPage/>}></Route>
         <Route path='/weather' element={<WeatherApp/>}/>
-        
+        <Route path='/signup' element={<SignUp/>}/>
       </Routes>
      </Router>
     </>

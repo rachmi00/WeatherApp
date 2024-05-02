@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
-import { auth, googleProvider } from "../../firebase";
+import { auth, googleProvider, gitHubProvider } from "../../firebase";
 import { useNavigate, NavLink } from "react-router-dom";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faGift, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function LoginPage() {
@@ -47,6 +47,17 @@ function LoginPage() {
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
+      navigate("/weather")
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+  const signInWithGitHub = async () => {
+    try {
+      await signInWithPopup(auth, gitHubProvider);
+      navigate("/weather")
     } catch (err) {
       console.error(err);
     }
@@ -78,13 +89,19 @@ function LoginPage() {
           </span>
           Sign in with Google
         </button>
+        <button onClick={signInWithGitHub} className="google-signup-button">
+          <span className="col">
+            <FontAwesomeIcon icon={faGift} className="google-icon" />
+          </span>
+          Sign in with GitHub
+        </button>
         <button type="submit" className="login-button">
           Sign In
         </button>
       </form>
       <div className="sign">
         <span>Don't have an account yet?</span>
-        <NavLink to="/">Sign up</NavLink>
+        <NavLink to="/signup">Sign up</NavLink>
       </div>
     </div>
   );

@@ -96,8 +96,6 @@ function Bloggy(){
       const deleteBlog = async (id)=>{
         const blogDoc = doc(db, 'blog', id);
         await deleteDoc(blogDoc);
-
-         // Remove the deleted blog from the 'blog' state
         setBlog((prevBlogs) => prevBlogs.filter((blog) => blog.id !== id));
       }
 
@@ -207,10 +205,10 @@ return (
             </div>
           </div>
           <div className='m-3'>
-            <button type="button" className="btn btn-primary mr-3 " onClick={() => { setEditingId(blog.id); setEditingBlog({ Title: blog.Title, Content: blog.Content, Image: null }); }}>
+            <button type="button" className="btn btn-primary me-5 " onClick={() => { setEditingId(blog.id); setEditingBlog({ Title: blog.Title, Content: blog.Content, Image: null }); }}>
             Edit
           </button>
-          <button type='button'className='btn btn-danger ' onClick={()=>deleteBlog(blog.id)}>
+          <button type='button'className='btn btn-danger  ' onClick={()=>deleteBlog(blog.id)}>
             Delete post
           </button>
           </div>
